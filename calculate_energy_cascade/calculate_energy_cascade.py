@@ -23,7 +23,32 @@ def read_config_yaml(file_control):
     sys.exit(1)
   return config
 
-def fft_routine(config, index, var):
+
+def insert_suffix(filename, suffix):
+  parts = filename.split('.')
+  if len(parts) == 2:
+    new_filename = f"{parts[0]}{suffix}.{parts[1]}"
+    return new_filename
+  else:
+    # ファイル名が拡張子を含まない場合の処理
+    return filename + suffix
+
+
+def zero_pad_number(number, length=3):
+    """
+    Zero-pad the given number to the specified length.
+
+    Parameters:
+    - number: The number to be zero-padded.
+    - length: The desired length of the resulting string, including zero-padding.
+
+    Returns:
+    - Zero-padded string representation of the number.
+    """
+    return f"{number:0{length}d}"
+
+
+def fft_routine(config, suffix, var):
 
   n_start     = config['fft_step_start']
   n_end       = config['fft_step_end']
@@ -83,7 +108,8 @@ def fft_routine(config, index, var):
   # Universal function
   curve_univ_turb = config['factor_univ_func']*eps**(2/3)*wavenumb**(-5/3)
 
-  print('Writing FFT file...:', outputfile)
+  filename_tmp = insert_suffix(outputfile, "_probe"+zero_pad_number(suffix))
+  print('Writing FFT file...:', filename_tmp)
   header = 'variables=Wavenumber, Energyspectrum, Wavenumber_5by3, Frequency[Hz], '
   fft_data = np.c_[
                     wavenumb[1:n_sample//2]/wavenumber_kolmogorov,
@@ -91,7 +117,7 @@ def fft_routine(config, index, var):
                     curve_univ_turb[1:n_sample//2],
                     freqlist[1:n_sample//2]
                   ]
-  np.savetxt(outputfile, fft_data, header=header, delimiter='\t', comments='' );
+  np.savetxt(filename_tmp, fft_data, header=header, delimiter='\t', comments='' );
 
 
 def main():
@@ -144,9 +170,9 @@ def main():
     variable_dict[varname_target[m]] = variable_list[m]
 
   # FFT
-  m = 1
-  var_fft = variable_dict[varname_target[m]]
-  fft_routine( config, m, var_fft )
+  for m in range(0,num_var):
+    var_fft = variable_dict[varname_target[m]]
+    fft_routine( config, m, var_fft )
 
   # Output history
   filename_tmp = config["filename_output"]
