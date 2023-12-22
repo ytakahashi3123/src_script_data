@@ -1,0 +1,20 @@
+aoa: 
+  - 0
+  - 5
+  - 10
+  - 15
+
+dirname_base: maactwt_sting_aoa00
+filename_base: history.dat
+varname_target: 
+  - Time_Iter
+  - CD
+  - CL
+  - CSF
+  - CMx
+  - CMy
+  - Cmz
+
+time_step: 1.e-4
+
+filename_output: tecplot_aerodynamic.dat

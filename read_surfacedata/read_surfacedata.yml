@@ -1,0 +1,118 @@
+#---File names---
+surfacedata:
+  # Input data directory
+  dir_input: ./section_y0.20
+
+  # Input data file
+  file_input: plots_surface
+  file_ext: .csv
+
+  # Number of input files
+  num_case: 1000
+
+  # Initial target coord
+  target_coord_x:
+    - 2.5e-1
+    - 2.5e-1
+    - 3.0e-1
+    - 3.0e-1
+    - 3.5e-1
+    - 3.5e-1
+  target_coord_y:
+    - 2.0e-1
+    - 2.0e-1
+    - 2.0e-1
+    - 2.0e-1
+    - 2.0e-1
+    - 2.0e-1
+  target_coord_z:
+    -  0.5e-3
+    - -0.5e-3
+    -  0.5e-3
+    - -0.5e-3
+    -  0.5e-3
+    - -0.5e-3
+
+  # 読み込みメッセージを何ステップごとに出力するか
+  interval_message: 250
+
+  # 剛体計算（流体のみ）で座標インデクスを特定するときに使う
+  # Input data directory
+  dir_input_ref: ../../delta_m0.9_p10000_fluid/plots_surface_pv/section_y0.20
+
+  # Input data file
+  file_input_ref: plots_surface_999
+  file_ext_ref: .csv
+
+
+result:
+  # Result directory name
+  dir_result: results_surface
+
+  # Output file name
+  file_result: plots_surface
+  file_result_ext: .dat
+
+
+aero_history:
+  # 
+  flag_hist: False
+
+  # Input aerodynamic file
+  file_hist: ../history
+  file_hist_ext: .dat
+
+
+
+#---CFD informaiton---
+cfd_condition:
+  # Time step, s
+  dt_cfd: 5.e-4
+
+  # Start step of free oscillation
+  n_start_cfd: 0
+
+
+#---Freestream condition---
+freestream_condition: 
+  # Freestream velocity, m/s
+  velo_inf: 290.028                    
+
+  # Freestream density, kg/m3
+  dens_inf: 0.0797790
+
+  # Freestream temperature, K
+  temp_inf: 257.996
+
+
+#--Viscosity(Sutherland)--
+viscosity: 
+  # mu0
+  mu0_sut: 1.716e-5
+
+  # T0
+  t0_sut: 273.15
+
+  # C
+  c_sut: 110.4
+
+
+#---Gas properties---
+gas_properties:
+  # Specific heat ratio
+  gamma: 1.4
+
+  # Gas constant
+  gas_const: 8.3144598
+
+  # Molecular weight of air
+  molecular_weight_air: 28.8e-3
+
+
+#---Reference---
+references:
+  # Characteristic length, m
+  length_ref: 0.4
+
+  # Characteristic area m^2
+  area_ref: 0.08

@@ -1,0 +1,98 @@
+#---File names---
+file_names_precicelog:
+  # Input data directory
+  dir_input: .
+
+  # Input data file
+  file_input: precice-Calculix-watchpoint-point
+
+  # Number of input files
+  num_case: 1
+
+  # 1周期ごとの変位切り出しを行うかどうか
+  flag_cycleprocess: False
+
+  # Dimension
+  kind_dimension: "2"
+
+file_names_aero:
+  # Input aerodynamic file
+  file_hist: history
+
+  # SU2 version
+  su2_version: "7"
+
+
+file_names_result:
+  # Result directory name
+  dir_result: results_disp
+
+  # Output file name
+  file_result: tecplot_disp
+
+
+#---CFD informaiton---
+cfd_condition:
+  # Time step, s
+  dt_cfd: 5.e-4
+
+  # Start step of free oscillation
+  n_start_cfd: 0
+
+
+#---Freestream condition---
+freestream_condition: 
+  # Freestream velocity, m/s
+  velo_inf: 342.8                     
+
+  # Freestream density, kg/m3
+  dens_inf: 1.013
+
+  # Freestream temperature, K
+  temp_inf: 241.3
+
+
+#--Viscosity(Sutherland)--
+viscosity: 
+  # mu0
+  mu0_sut: 1.716e-5
+
+  # T0
+  t0_sut: 273.15
+
+  # C
+  c_sut: 110.4
+
+
+#---Gas properties---
+gas_properties:
+  # Specific heat ratio
+  gamma: 1.4
+
+  # Gas constant
+  gas_const: 8.3144598
+
+  # Molecular weight of air
+  molecular_weight_air: 28.8e-3
+
+
+#---Reference---
+references:
+  # Characteristic length, m
+  length_ref: 0.4
+
+  # Characteristic area m^2
+  area_ref: 0.08
+
+
+#---Coordinate information---
+coord_condition:
+  # Reference coordinate, m
+  coord_ref: 0
+
+  # Reference coorfinate axis, x:0, y:1, z:2
+  coord_axis_ref: 2
+
+# FFT
+fft:
+  kind_window: hanning

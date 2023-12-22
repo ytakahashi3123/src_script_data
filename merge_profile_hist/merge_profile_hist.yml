@@ -1,0 +1,23 @@
+file_names_surface:
+  # Input data directory
+  dir_input: './fluid/pv_surfaceprofile_y015mm'
+
+  # Input data file
+  file_input: 'surfaceprofile'
+
+  # Number of input files
+  num_case: 1000
+
+  # Result directory name
+  dir_result: 'results_surfaceprof'
+
+  # Output file name
+  file_result: 'tecplot_surfaceprof'
+
+
+cfd_condition:
+  # time step, s
+  dt_cfd: 5.e-4
+
+  # Start step of free oscillation
+  n_start_cfd: 0
