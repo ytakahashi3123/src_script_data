@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Program to calculate enegy cascade
+# Program to calculate enegy spectrum
 # Version: v1.0
 # Author: Yusuke Takahashi, Hokkaido University
 # Contact: ytakahashi@eng.hokudai.ac.jp
@@ -22,6 +22,17 @@ def read_config_yaml(file_control):
     print(e, file=sys.stderr)
     sys.exit(1)
   return config
+
+
+def make_directory(dir_path):
+  import os as os
+  import shutil as shutil
+  if not os.path.exists(dir_path):
+    os.mkdir(dir_path)
+  #else:
+  #  shutil.rmtree(dir_path)
+  #  os.mkdir(dir_path)
+  return
 
 
 def insert_suffix(filename, suffix):
@@ -48,7 +59,7 @@ def zero_pad_number(number, length=3):
     return f"{number:0{length}d}"
 
 
-def fft_routine(config, str_tail, var):
+def energy_spectrum(config, str_tail, var):
 
   n_start     = config['fft_step_start']
   n_end       = config['fft_step_end']
@@ -68,7 +79,7 @@ def fft_routine(config, str_tail, var):
   # --Kolmogorov wavenumber
   wavenumber_kolmogorov = eps**(1/4)*kvisccosity**(-3/4)
 
-  print(time_kolmogorov,length_kolmogorov)
+  #print(time_kolmogorov,length_kolmogorov)
 
   n_sample      = len(var[n_start:n_end])
   sampling_freq = 1.0/time_step
@@ -106,9 +117,9 @@ def fft_routine(config, str_tail, var):
   # Factor for normilization
   factor_normalize = eps**(1/4)*kvisccosity**(5/4)
   # Universal function
-  curve_univ_turb = config['factor_univ_func']*eps**(2/3)*wavenumb**(-5/3)
+  curve_univ_turb = config['kolmogorov_constant']*eps**(2/3)*(wavenumb/wavenumber_kolmogorov)**(-5/3)
 
-  filename_tmp = insert_suffix(outputfile, "_"+str_tail)
+  filename_tmp = config['dirname_output'] + '/' + insert_suffix(outputfile, "_"+str_tail)
   print('Writing FFT file...:', filename_tmp)
   header = 'variables=Wavenumber, Energyspectrum, Wavenumber_5by3, Frequency[Hz], '
   fft_data = np.c_[
@@ -169,14 +180,17 @@ def main():
   for m in range(0,num_var):
     variable_dict[varname_target[m]] = variable_list[m]
 
-  # FFT
+  # Make directory for result output
+  make_directory(config['dirname_output'])
+
+  # Energy spectrum
   for m in range(0,num_var):
     str_tail=str(varname_target[m])
     var_fft = variable_dict[varname_target[m]]
-    fft_routine( config, str_tail, var_fft )
+    energy_spectrum( config, str_tail, var_fft )
 
   # Output history
-  filename_tmp = config["filename_output"]
+  filename_tmp = config['dirname_output'] + '/' + config["filename_output"]
   file_output = open( filename_tmp , 'w')
   header_tmp  = 'Variables=Time[s]'
   for m in range(0,num_var):
