@@ -1,0 +1,24 @@
+
+directory_input:
+  - "../maac_hwt_offset_x000_arcflow"
+  - "../maac_hwt_offset_x010_arcflow"
+  - "../maac_hwt_offset_x020_arcflow"
+  - "../maac_hwt_offset_x030_arcflow"
+  - "../maac_hwt_offset_x050_arcflow"
+  - "../maac_hwt_offset_x075_arcflow"
+
+filename_input: "aerodynamic_force.dat"
+
+feature_val:
+  name: "spacer_x"
+  value:
+    - 0
+    - 10
+    - 20
+    - 30
+    - 50
+    - 75
+
+directory_output: "../comparison"
+filename_output: "comparison_aerodynamic_force.dat"
+header_output: "Variables=X[mm],CD,CL,CS"

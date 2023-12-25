@@ -1,0 +1,57 @@
+
+
+
+# Freestream condition
+freestream: 
+
+  # Mach number
+  mach_number: 9.45
+
+  # temperature, K
+  temperature: 923.15
+
+  # Dynamic pressure, pa
+  pressure_dyn: 1.e+6
+
+
+# Viscosity
+viscosity:
+
+  # Constant or sutherland
+  kind_visc: "sutherland"
+
+  mu_const: 1.6401e-05
+
+  # mu0
+  mu0_sut: 1.716e-5
+
+  # T0
+  t0_sut: 273.15
+
+  # C
+  c_sut: 110.4
+
+
+# Gas properties
+gas_properties:
+  # Specific heat ratio
+  gamma: 1.4
+
+  # Gas constant
+  gas_const : 287.058
+
+  # Gas constant (Universal)
+  gas_const_univ: 8.3144598
+
+  # Molecular weight of air
+  molecular_weight: 28.8e-3
+
+
+
+# Reference
+references:
+  # Characteristic length, m
+  length_ref: 0.16
+
+  # Characteristic area m^2
+  area_ref: 0.02010619298
