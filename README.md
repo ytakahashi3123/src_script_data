@@ -1,6 +1,6 @@
 # src_script
 
-Scripts for data processing for SU2 computing results
+Small scripts for data processing for SU2 and arcflow computing results
 
 
 # Contact:
