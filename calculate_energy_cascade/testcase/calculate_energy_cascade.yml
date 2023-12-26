@@ -9,10 +9,13 @@ varname_target:
   - probe4
   - probe5
   - probe6
+  - probe7
+  - probe8
 
 time_step: 1.e-5
 
-filename_output: tecplot_energy_cascade.dat
+dirname_output: result_energy_spectrum
+filename_output: tecplot_history_probe.dat
 
 # Flow field Scale
 flow_velocity: 367.225 # m/s
@@ -24,5 +27,5 @@ kolmogorov_constant: 1.8
 fft_step_start: 0
 fft_step_end: -1
 fft_kind_window: hanning
-fft_filename_output: tecplot_fft.dat
+fft_filename_output: tecplot_energy_spectrum.dat
 fft_header: 

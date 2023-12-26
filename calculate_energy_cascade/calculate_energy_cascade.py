@@ -76,10 +76,16 @@ def energy_spectrum(config, str_tail, var):
   time_kolmogorov = np.sqrt((kvisccosity)/eps)
   # --Kolmogorov length
   length_kolmogorov = ((kvisccosity)**3/eps)**(1/4)
+  # --Kolmogorov velocity
+  velocity_kolmogorov = (kvisccosity*eps)**(1/4)
   # --Kolmogorov wavenumber
   wavenumber_kolmogorov = eps**(1/4)*kvisccosity**(-3/4)
 
-  #print(time_kolmogorov,length_kolmogorov)
+  print('Kolmogorov scale:')
+  print('Time:      ',time_kolmogorov)
+  print('Length:    ',length_kolmogorov)
+  print('Velocity:  ',velocity_kolmogorov)
+  #print('Wavenumber:',wavenumber_kolmogorov)
 
   n_sample      = len(var[n_start:n_end])
   sampling_freq = 1.0/time_step
@@ -103,6 +109,8 @@ def energy_spectrum(config, str_tail, var):
 
   #FFT (入力波とフーリエ変化した振幅を対応させるために，フーリエ変換後の振幅をデータ数/2で割っている)
   freqlist = np.fft.fftfreq(n=n_sample, d=time_step)
+#  freq_data = np.fft.fftfreq(n=n_sample, d=time_step)
+#  freqlist = np.abs(freq_data)
   wavenumb = 2*np.pi*freqlist
 
   var_window    = window*var[n_start:n_end]
@@ -117,6 +125,7 @@ def energy_spectrum(config, str_tail, var):
   # Factor for normilization
   factor_normalize = eps**(1/4)*kvisccosity**(5/4)
   # Universal function
+#  curve_univ_turb = config['kolmogorov_constant']*eps**(2/3)*(wavenumb/wavenumber_kolmogorov)**(-5/3)
   curve_univ_turb = config['kolmogorov_constant']*eps**(2/3)*(wavenumb/wavenumber_kolmogorov)**(-5/3)
 
   filename_tmp = config['dirname_output'] + '/' + insert_suffix(outputfile, "_"+str_tail)
