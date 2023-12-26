@@ -109,8 +109,6 @@ def energy_spectrum(config, str_tail, var):
 
   #FFT (入力波とフーリエ変化した振幅を対応させるために，フーリエ変換後の振幅をデータ数/2で割っている)
   freqlist = np.fft.fftfreq(n=n_sample, d=time_step)
-#  freq_data = np.fft.fftfreq(n=n_sample, d=time_step)
-#  freqlist = np.abs(freq_data)
   wavenumb = 2*np.pi*freqlist
 
   var_window    = window*var[n_start:n_end]
@@ -120,12 +118,12 @@ def energy_spectrum(config, str_tail, var):
   var_fft_abs    = 2.0*var_fft_abs_native/(float(n_sample))
   var_fft_abs[0] =     var_fft_abs[0]/2.0
 
-  var_fft_power = (var_fft_abs)**2
+#  var_fft_power = (var_fft_abs)**2
+#  var_fft_power =  ((var_fft_abs)**2)/(float(n_sample))
 
   # Factor for normilization
   factor_normalize = eps**(1/4)*kvisccosity**(5/4)
   # Universal function
-#  curve_univ_turb = config['kolmogorov_constant']*eps**(2/3)*(wavenumb/wavenumber_kolmogorov)**(-5/3)
   curve_univ_turb = config['kolmogorov_constant']*eps**(2/3)*(wavenumb/wavenumber_kolmogorov)**(-5/3)
 
   filename_tmp = config['dirname_output'] + '/' + insert_suffix(outputfile, "_"+str_tail)

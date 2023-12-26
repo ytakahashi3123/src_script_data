@@ -20,7 +20,7 @@ filename_output: tecplot_history_probe.dat
 # Flow field Scale
 flow_velocity: 367.225 # m/s
 flow_kinetic_viscosity: 1.626618e-5 # m^2/s
-flow_length: 0.8 # m
+flow_length: 0.086 # m
 kolmogorov_constant: 1.8
 
 # FFT
