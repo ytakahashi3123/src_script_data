@@ -70,6 +70,13 @@ def energy_spectrum(config, str_tail, var):
   kvisccosity = config['flow_kinetic_viscosity']
   length      = config['flow_length']
 
+  # Energy fluctuation (approximation)
+  # E = 1/2*(u*u+v*v+w*w)
+  # E = var{E}+E^{\prime} = mean(E) + sqrt( var(E) ) and u = var{u}+u^{\prime}
+  # Approximation: u^{\prime} is scaling to sqrt( var(E) ) -->  u^{\prime} ~ sqrt( var(E) )
+  energy_fluctuation = np.sqrt( np.var( var[n_start:n_end] ) )
+  velocity = np.sqrt( energy_fluctuation )
+
   # Energy dissipation (=energy input rate)
   eps = (velocity**3)/length 
   # --Kolmogorov time
