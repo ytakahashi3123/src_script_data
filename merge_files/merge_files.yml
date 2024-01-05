@@ -1,0 +1,9 @@
+input_files:
+  - testcase/history.dat
+  - testcase/history_01000.dat
+
+input_numlines:
+  - -1
+  - 100
+
+output_file: combined_history.dat
