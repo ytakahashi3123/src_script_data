@@ -7,6 +7,7 @@
 # Date: 2023/12/22
 
 import numpy as np
+import matplotlib.pyplot as plt
 import yaml as yaml
 import sys as sys
 
@@ -144,6 +145,19 @@ def energy_spectrum(config, str_tail, var):
                   ]
   np.savetxt(filename_tmp, fft_data, header=header, delimiter='\t', comments='' );
 
+  #fig, ax = plt.subplots()
+  #X = wavenumb[1:n_sample//2]/wavenumber_kolmogorov
+  #Y = var_fft_abs[1:n_sample//2]/factor_normalize
+  #ax.plot(X, Y, color='green')
+
+  # ラベル、凡例、タイトルなどを設定
+  #plt.xlabel('X-axis Label')
+  #plt.ylabel('Y-axis Label')
+  #plt.legend()
+  #plt.title('Your Plot Title')
+
+  # 画像を保存
+  #plt.savefig(filename_tmp+'.png')
 
 def main():
 
