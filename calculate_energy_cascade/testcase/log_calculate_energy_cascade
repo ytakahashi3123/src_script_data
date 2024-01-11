@@ -1,0 +1,29 @@
+Reading control file...: calculate_energy_cascade.yml
+{'dirname_base': '.', 'filename_base': 'history.dat', 'vername_timestep': 'Time_Iter', 'time_step': 1e-05, 'varname_kind': 'velocity', 'varname_group': [['probe_u1', 'probe_v1', 'probe_w1', 'probe1'], ['probe_u2', 'probe_v2', 'probe_w2', 'probe2'], ['probe_u3', 'probe_v3', 'probe_w3', 'probe3'], ['probe_u4', 'probe_v4', 'probe_w4', 'probe4'], ['probe_u5', 'probe_v5', 'probe_w5', 'probe5']], 'dirname_output': 'result_energy_spectrum', 'flag_output_probe': True, 'filename_output': 'tecplot_history_probe.dat', 'flow_velocity': 367.225, 'flow_kinetic_viscosity': 1.626618e-05, 'flow_length': 0.086, 'kolmogorov_constant': 1.8, 'fft_step_start': 0, 'fft_step_end': -1, 'fft_kind_window': 'hanning', 'fft_flag_output_tecplot': True, 'fft_filename_output_tecplot': 'tecplot_energy_spectrum.dat', 'fft_flag_output_image': True, 'fft_filename_output_image': 'energy_spectrum.eps'}
+Reading file:  ./history.dat
+Number of step:  1000
+Kolmogorov scale:
+Time:       5.15454184621258e-07
+Length:     2.895595024999631e-06
+Velocity:   5.617560418346854
+Writing FFT file in Tecplot format...: result_energy_spectrum/tecplot_energy_spectrum_probe1.dat
+Kolmogorov scale:
+Time:       4.371669467757768e-07
+Length:     2.6666526294786137e-06
+Velocity:   6.099849609276022
+Writing FFT file in Tecplot format...: result_energy_spectrum/tecplot_energy_spectrum_probe2.dat
+Kolmogorov scale:
+Time:       5.008923721965979e-07
+Length:     2.854401073216036e-06
+Velocity:   5.698631545731937
+Writing FFT file in Tecplot format...: result_energy_spectrum/tecplot_energy_spectrum_probe3.dat
+Kolmogorov scale:
+Time:       1.2618191626366774e-06
+Length:     4.530450046838334e-06
+Velocity:   3.590411511401981
+Writing FFT file in Tecplot format...: result_energy_spectrum/tecplot_energy_spectrum_probe4.dat
+Kolmogorov scale:
+Time:       3.194454768127989e-06
+Length:     7.208437851589492e-06
+Velocity:   2.256547165265944
+Writing FFT file in Tecplot format...: result_energy_spectrum/tecplot_energy_spectrum_probe5.dat

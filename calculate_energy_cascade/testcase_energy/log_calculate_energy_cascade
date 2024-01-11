@@ -1,0 +1,44 @@
+Reading control file...: calculate_energy_cascade.yml
+{'dirname_base': '.', 'filename_base': 'history.dat', 'vername_timestep': 'Time_Iter', 'time_step': 1e-05, 'varname_kind': 'energy', 'varname_group': [['probe1', 'probe1'], ['probe2', 'probe2'], ['probe3', 'probe3'], ['probe4', 'probe4'], ['probe5', 'probe5'], ['probe6', 'probe6'], ['probe7', 'probe7'], ['probe8', 'probe8']], 'dirname_output': 'result_energy_spectrum', 'flag_output_probe': True, 'filename_output': 'tecplot_history_probe.dat', 'flow_velocity': 367.225, 'flow_kinetic_viscosity': 1.626618e-05, 'flow_length': 0.086, 'kolmogorov_constant': 1.8, 'fft_step_start': 0, 'fft_step_end': -1, 'fft_kind_window': 'hanning', 'fft_flag_output_tecplot': True, 'fft_filename_output_tecplot': 'tecplot_energy_spectrum.dat', 'fft_flag_output_image': True, 'fft_filename_output_image': 'energy_spectrum.eps'}
+Reading file:  ./history.dat
+Number of step:  1000
+Kolmogorov scale:
+Time:       7.801016995723163e-07
+Length:     3.562200817408982e-06
+Velocity:   4.566328748369509
+Writing FFT file in Tecplot format...: result_energy_spectrum/tecplot_energy_spectrum_probe1.dat
+Kolmogorov scale:
+Time:       6.370359523111419e-07
+Length:     3.2190280313728937e-06
+Velocity:   5.053134002397171
+Writing FFT file in Tecplot format...: result_energy_spectrum/tecplot_energy_spectrum_probe2.dat
+Kolmogorov scale:
+Time:       6.252703504455995e-07
+Length:     3.1891629103906247e-06
+Velocity:   5.100454400433133
+Writing FFT file in Tecplot format...: result_energy_spectrum/tecplot_energy_spectrum_probe3.dat
+Kolmogorov scale:
+Time:       8.278842862034958e-07
+Length:     3.669675029012457e-06
+Velocity:   4.432594132014294
+Writing FFT file in Tecplot format...: result_energy_spectrum/tecplot_energy_spectrum_probe4.dat
+Kolmogorov scale:
+Time:       8.37506130883961e-07
+Length:     3.6909382920962074e-06
+Velocity:   4.407058236338568
+Writing FFT file in Tecplot format...: result_energy_spectrum/tecplot_energy_spectrum_probe5.dat
+Kolmogorov scale:
+Time:       8.642226031138449e-07
+Length:     3.7493466660630835e-06
+Velocity:   4.338403847057421
+Writing FFT file in Tecplot format...: result_energy_spectrum/tecplot_energy_spectrum_probe6.dat
+Kolmogorov scale:
+Time:       9.54344857182463e-07
+Length:     3.939993049359889e-06
+Velocity:   4.128479364358951
+Writing FFT file in Tecplot format...: result_energy_spectrum/tecplot_energy_spectrum_probe7.dat
+Kolmogorov scale:
+Time:       1.1471073717478439e-06
+Length:     4.319612828504117e-06
+Velocity:   3.7656569340342894
+Writing FFT file in Tecplot format...: result_energy_spectrum/tecplot_energy_spectrum_probe8.dat

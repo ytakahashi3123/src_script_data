@@ -1,0 +1,96 @@
+#---File names---
+file_names_aero:
+
+  dir_input: .
+
+  # Input aerodynamic file
+  file_hist: history.dat
+
+
+file_names_result:
+  # Result directory name
+  dir_result: results_aero_static
+
+  # Output file name
+  file_result: tecplot_aero_static.dat
+
+
+#--Post process---
+post_process:
+  post_var:
+    - 'Time_Iter'
+    - 'CD'
+    - 'CL'
+    - 'CSF'
+    - 'CMx'
+    - 'CMy'
+    - 'CMz'
+    #- 'Omegax'
+    #- 'Omegay'
+    #- 'Omegaz'
+
+#---Rotational informaiton---
+gridrot_condition:
+  angle_init:
+  - 0.0
+  - 0.0
+  - 0.0
+
+#--Mean and standard deviation---
+data_mean_std:
+  time_start: 0.0
+  time_end: 0.005
+
+#---CFD informaiton---
+cfd_condition:
+  # Time step, s
+  dt_cfd: 1.e-6
+
+  # Start step of free oscillation
+  n_start_cfd: 0
+
+
+#---Freestream condition---
+freestream_condition: 
+  # Freestream velocity, m/s
+  velo_inf: 1325.3793193565639           
+
+  # Freestream density, kg/m3
+  dens_inf: 0.002442727752405166
+
+  # Freestream temperature, K
+  temp_inf: 48.94621033376636
+
+
+#--Viscosity(Sutherland)--
+viscosity: 
+  # mu0
+  mu0_sut: 1.716e-5
+
+  # T0
+  t0_sut: 273.15
+
+  # C
+  c_sut: 110.4
+
+
+#---Gas properties---
+gas_properties:
+  # Specific heat ratio
+  gamma: 1.4
+
+  # Gas constant
+  gas_const: 8.3144598
+
+  # Molecular weight of air
+  molecular_weight_air: 28.8e-3
+
+
+#---Reference---
+references:
+  # Characteristic length, m
+  length_ref: 0.160
+
+  # Characteristic area m^2
+  area_ref: 0.02010619298
+

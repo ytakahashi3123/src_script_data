@@ -7,35 +7,34 @@ vername_timestep: Time_Iter
 time_step: 1.e-5
 
 # velocity or energy
-varname_kind: velocity
+varname_kind: energy
 
 # Variable names grouped (valid if varname_kind is velocity)
 varname_group:
   - 
-    - probe_u1
-    - probe_v1
-    - probe_w1
+    - probe1
     - probe1 # Group name
   - 
-    - probe_u2
-    - probe_v2
-    - probe_w2
+    - probe2
     - probe2
   - 
-    - probe_u3
-    - probe_v3
-    - probe_w3
+    - probe3
     - probe3
   - 
-    - probe_u4
-    - probe_v4
-    - probe_w4
+    - probe4
     - probe4
   - 
-    - probe_u5
-    - probe_v5
-    - probe_w5
     - probe5
+    - probe5
+  - 
+    - probe6
+    - probe6
+  - 
+    - probe7
+    - probe7
+  - 
+    - probe8
+    - probe8
 
 # Output
 dirname_output: result_energy_spectrum

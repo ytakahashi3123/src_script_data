@@ -1,20 +1,45 @@
+# Configuration file for script of energy spectra calculation
 
 dirname_base: .
 filename_base: history.dat
-varname_target: 
-  - Time_Iter
-  - probe1
-  - probe2
-  - probe3
-  - probe4
-  - probe5
-  - probe6
-  - probe7
-  - probe8
 
+vername_timestep: Time_Iter
 time_step: 1.e-5
 
+# velocity or energy
+varname_kind: velocity
+
+# Variable names grouped (valid if varname_kind is velocity)
+varname_group:
+  - 
+    - probe_u1
+    - probe_v1
+    - probe_w1
+    - probe1 # Group name
+  - 
+    - probe_u2
+    - probe_v2
+    - probe_w2
+    - probe2
+  - 
+    - probe_u3
+    - probe_v3
+    - probe_w3
+    - probe3
+  - 
+    - probe_u4
+    - probe_v4
+    - probe_w4
+    - probe4
+  - 
+    - probe_u5
+    - probe_v5
+    - probe_w5
+    - probe5
+
+# Output
 dirname_output: result_energy_spectrum
+flag_output_probe: True
 filename_output: tecplot_history_probe.dat
 
 # Flow field Scale
@@ -27,5 +52,10 @@ kolmogorov_constant: 1.8
 fft_step_start: 0
 fft_step_end: -1
 fft_kind_window: hanning
-fft_filename_output: tecplot_energy_spectrum.dat
-fft_header: 
+
+# --Tecplot data
+fft_flag_output_tecplot: True
+fft_filename_output_tecplot: tecplot_energy_spectrum.dat
+# -- Image data
+fft_flag_output_image: True
+fft_filename_output_image: energy_spectrum.eps
