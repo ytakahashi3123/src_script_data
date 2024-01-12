@@ -1,0 +1,23 @@
+# Configuration file for scriptto extract forces from SU2 breakdown file
+
+dirname_base: output_force
+filename_base: forces_breakdown.dat
+
+step_start: 0
+step_end: 100
+step_interval: 10
+step_digit: 5
+
+time_step: 1.e-6
+
+boundarygroup_extracted: "Surface name: wall_capsule"
+
+varname_extracted:
+  - "Total CD"
+  - "Total CL"
+
+# Output
+dirname_output: result_extract
+flag_output: True
+filename_output: tecplot_result_extract.dat
+
