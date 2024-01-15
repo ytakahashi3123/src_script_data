@@ -10,7 +10,10 @@ step_digit: 5
 
 time_step: 1.e-6
 
-boundarygroup_extracted: "Surface name: wall_capsule"
+boundarygroup_extracted: 
+  - "Surface name: wall_capsule"
+  - "Surface name: wall_aeroshell"
+  - "Surface name: wall_sting"
 
 varname_extracted:
   - "Total CD"

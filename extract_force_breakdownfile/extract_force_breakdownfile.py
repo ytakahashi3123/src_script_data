@@ -79,12 +79,13 @@ def main():
   time_elapsed = np.linspace(0, time_step*(num_step-1), num_step)
 
   # Set variables
-  pattern_boundarygroup = re.escape(config['boundarygroup_extracted'])
+  boundarygroup = config['boundarygroup_extracted']
+  num_grp = len(boundarygroup)
   varname_extracted = config['varname_extracted']
   num_var = len(varname_extracted)
 
   # Extract data
-  variable_extracted = np.zeros(num_step*num_var).reshape(num_step,num_var)
+  variable_extracted = np.zeros(num_grp*num_step*num_var).reshape(num_grp,num_step,num_var)
   for n in range(0, num_step):
     nstep        = step_start + n*step_interval
     filename_tmp = config['dirname_base'] + '/' + insert_suffix(filename_base,'_'+str(nstep).zfill(step_digit))
@@ -94,20 +95,22 @@ def main():
     with open(filename_tmp, "r") as file:
       content = file.read()
 
-    # パターン
-    for m in range(0, num_var):
-      pattern_varname = re.escape(varname_extracted [m])
-      pattern = pattern_boundarygroup + r"[\s\S]*?" + pattern_varname + r"\s+\(\s*\d+%.*?\):\s+([-+]?\d*\.\d+|\d+)"
+    for i in range(0, num_grp):
+      pattern_boundarygroup = re.escape(boundarygroup[i])
+      # パターン
+      for m in range(0, num_var):
+        pattern_varname = re.escape(varname_extracted [m])
+        pattern = pattern_boundarygroup + r"[\s\S]*?" + pattern_varname + r"\s+\(\s*\d+%.*?\):\s+([-+]?\d*\.\d+|\d+)"
 
-      # 正規表現を使ってTotal CDの値を抽出
-      match = re.search(pattern, content)
+        # 正規表現を使ってTotal CDの値を抽出
+        match = re.search(pattern, content)
 
-      # 抽出した値を表示
-      if match:
-        variable_extracted[n,m] = match.group(1)
-        #print(varname_extracted[m],':', variable_extracted[n,m])
-      else:
-        print(varname_extracted[m],"not found.")
+        # 抽出した値を表示
+        if match:
+          variable_extracted[i,n,m] = match.group(1)
+          #print(varname_extracted[m],':', variable_extracted[n,m])
+        else:
+          print(varname_extracted[i,n,m],"not found.")
 
 
   # Visualization
@@ -116,16 +119,18 @@ def main():
     filename_tmp = config['dirname_output'] + '/' + config["filename_output"]
     file_output = open( filename_tmp , 'w')
     header_tmp  = 'Variables="Time[s]"'
-    for n in range(0,num_var):
-      header_tmp = header_tmp + ', ' + '"'+str(varname_extracted[n])+'"'
+    for i in range(0, num_grp):
+      for n in range(0,num_var):
+        header_tmp = header_tmp + ', ' + '"'+str(varname_extracted[n])+'_'+str(boundarygroup[i])+'"'
     header_tmp = header_tmp.rstrip(',') + '\n'
     file_output.write( header_tmp )
 
     text_tmp = ''
     for n in range(0,num_step):
       text_tmp = text_tmp + str(time_elapsed[n])
-      for m in range(0,num_var):
-        text_tmp = text_tmp + ', ' + str( variable_extracted[n,m] )
+      for i in range(0, num_grp):
+        for m in range(0,num_var):
+          text_tmp = text_tmp + ', ' + str( variable_extracted[i,n,m] )
       text_tmp = text_tmp + '\n'
     file_output.write( text_tmp )
     file_output.close()
