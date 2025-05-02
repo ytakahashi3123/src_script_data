@@ -22,6 +22,15 @@ file_names_aero:
   # SU2 version
   su2_version: "7"
 
+  post_var:
+    - 'Time_Iter'
+    - 'CD'
+    - 'CL'
+    - 'CSF'
+    - 'CMx'
+    - 'CMy'
+    - 'CMz'
+
 
 file_names_result:
   # Result directory name

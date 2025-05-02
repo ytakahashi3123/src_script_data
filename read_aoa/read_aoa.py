@@ -88,6 +88,9 @@ def fft_routine(n_start, n_end, time_step, var, outputfile, header, kind_window)
   n_sample      = len(var[n_start:n_end])
   sampling_freq = 1.0/time_step
 
+  print('Number of samples:', n_sample)
+  print('Sample frequency, Hz:', sampling_freq)
+
   #Window function
   #kind_window = "hanning"
   if kind_window == "hamming":
@@ -168,16 +171,37 @@ if __name__ == '__main__':
     id_hist_start = 1
     id_precicelog_start = 4
 
+  # 変数位置の同定（何列目が所望する変数データなのか）
+  # Read input data
+  filename_tmp   = dir_input+'/'+file_hist+'.dat'
+  # --Header setting
+  with open(filename_tmp) as f:
+    lines = f.readlines()
+  # リストとして取得 
+  lines_strip = [line.strip() for line in lines]
+  # カンマとスペースを削除
+  words = lines_strip[1].replace(',', ' ').replace('"', ' ').split()
+  post_var   = config['file_names_aero']['post_var']
+  post_index = []
+  post_dict  = {}
+  for i in range( 0,len(post_var) ):
+    for n in range( 0,len(words) ):
+      if post_var[i] == words[n] :
+        post_index.append(n)
+        post_dict[ post_var[i] ] = n
+        #print( post_var[i], words[n], post_dict[ post_var[i] ], i, n)
+        break
+
   filename_hist   = dir_input+'/'+file_hist+'.dat'
   print('Reading SU2 history file...:', filename_hist)
   data_aero     = np.loadtxt(filename_hist,comments=('#'),delimiter=',',skiprows=num_skiprows)
-  step_aero     = data_aero[:,0]
-  aerocoef_cl   = data_aero[:,id_hist_start  ]
-  aerocoef_cd   = data_aero[:,id_hist_start+1]
-  aerocoef_csf  = data_aero[:,id_hist_start+2]
-  aerocoef_cmx  = data_aero[:,id_hist_start+3]
-  aerocoef_cmy  = data_aero[:,id_hist_start+4]
-  aerocoef_cmz  = data_aero[:,id_hist_start+5]
+  step_aero     = data_aero[:, post_dict['Time_Iter'] ]
+  aerocoef_cl   = data_aero[:, post_dict['CL']]
+  aerocoef_cd   = data_aero[:, post_dict['CD']]
+  aerocoef_csf  = data_aero[:, post_dict['CSF']]
+  aerocoef_cmx  = data_aero[:, post_dict['CMx']]
+  aerocoef_cmy  = data_aero[:, post_dict['CMy']]
+  aerocoef_cmz  = data_aero[:, post_dict['CMz']]
 
 # ---Read displacement data---
   for i in range(0,num_case):
