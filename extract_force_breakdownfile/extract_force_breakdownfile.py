@@ -100,17 +100,30 @@ def main():
       # パターン
       for m in range(0, num_var):
         pattern_varname = re.escape(varname_extracted [m])
-        pattern = pattern_boundarygroup + r"[\s\S]*?" + pattern_varname + r"\s+\(\s*\d+%.*?\):\s+([-+]?\d*\.\d+|\d+)"
+        #pattern = pattern_boundarygroup + r"[\s\S]*?" + pattern_varname + r"\s+\(\s*\d+%.*?\):\s+([-+]?\d*\.\d+|\d+)"
 
         # 正規表現を使ってTotal CDの値を抽出
-        match = re.search(pattern, content)
+        #match = re.search(pattern, content)
 
         # 抽出した値を表示
+        #if match:
+        #  variable_extracted[i,n,m] = match.group(1)
+        #  #print(varname_extracted[m],':', variable_extracted[n,m])
+        #else:
+        #  print(varname_extracted[i,n,m],"not found.")
+
+        # 修正(2025/12/25)
+        # \s*(\(\s*\d+%.*?\))?  の部分でカッコ内の表記を「オプション（あってもなくても良い）」にしています
+        pattern = pattern_boundarygroup + r"[\s\S]*?" + pattern_varname + r"\s*(\(\s*\d+%.*?\))?:\s+([-+]?\d*\.\d+|\d+)"
+
+        # 正規表現を使って値を抽出
+        match = re.search(pattern, content)
+
         if match:
-          variable_extracted[i,n,m] = match.group(1)
-          #print(varname_extracted[m],':', variable_extracted[n,m])
+          # カッコ部分をオプションにしたため、数値のグループ番号が (2) に変わる点に注意
+          variable_extracted[i,n,m] = match.group(2)
         else:
-          print(varname_extracted[i,n,m],"not found.")
+          print(f"Warning: {varname_extracted[m]} in {boundarygroup[i]} not found.")
 
 
   # Visualization

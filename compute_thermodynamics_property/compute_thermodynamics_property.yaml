@@ -1,0 +1,43 @@
+
+gas_constant_universal: 8.31441
+
+species:
+  - name: N2
+    molar_mass: 0.02800
+    dof: 5
+    mass_fraction: 6.3103E-01
+  - name: Ar
+    molar_mass: 0.03995
+    dof: 3
+    mass_fraction: 0.0
+  - name: O2
+    molar_mass: 0.03200
+    dof: 5
+    mass_fraction: 7.3805E-09
+  - name: N
+    molar_mass: 0.01400
+    dof: 3
+    mass_fraction: 1.3594E-01
+  - name: O
+    molar_mass: 0.01600
+    dof: 3
+    mass_fraction: 2.3291E-01
+
+geometry:
+  nose_radius: 0.036   # [m]
+  length_character: 0.072   # [m]
+
+sutherland_constant:
+  mu0: 1.716e-5   # [Pa.s]
+  T0: 273.15      # [K]
+  S: 110.4       # [K]
+
+velocity: 1.0912E+04
+density: 2.3678E-03
+temperature: 2.5873E+03
+
+filename_tecplot_output: "tecplot_output.dat"
+format_tecplot_output: ".6e"
+header_tecplot_output: |
+  variables="Time[s]", "Altitude[km]", "Density[kg/m3]", "Temperature[K]", "Velocity[m/s]", "Mach_number", "Reynolds_number", "HeatFlux[W/m2]"
+  zone T="trajectory"
